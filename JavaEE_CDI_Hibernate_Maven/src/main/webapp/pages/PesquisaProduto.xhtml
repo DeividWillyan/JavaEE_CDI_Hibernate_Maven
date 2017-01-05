@@ -1,0 +1,70 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa Produtos</ui:define>
+
+	<ui:define name="corpo">
+		<h1>Pesquisa Produtos</h1>
+		<h:form>
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup style="margin-top: 3px; margin-bottom:3px">
+					<p:button value="Pesquisar" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right"
+					style="margin-top: 3px; margin-bottom:3px">
+					<p:button value="Novo" outcome="/pages/CadastroProduto" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+				<p:outputLabel value="SKU" for="sku" />
+				<p:inputText id="sku" size="20" maxlength="20" />
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="60" maxlength="80" />
+			</p:panelGrid>
+		</h:form>
+
+
+		<p:dataTable emptyMessage="Nenhum registro encontrado" rows="10"
+			paginator="true" paginatorPosition="top" style="margin-top: 30px">
+
+			<p:column headerText="SKU" style="text-align:center;width:100px">
+				<h:outputText value="" />
+			</p:column>
+
+			<p:column headerText="Nome">
+			</p:column>
+
+			<p:column headerText="Categoria" style="width:250px">
+			</p:column>
+
+			<p:column headerText="Valor Unitario"
+				style="text-align:right;width:120px">
+			</p:column>
+
+			<p:column headerText="Estoque" style="text-align:center;width:100px">
+			</p:column>
+
+			<p:column style="text-align:center;width:100px">
+				<p:commandButton icon="ui-icon-pensil" />
+				<p:commandButton icon="ui-icon-trash" oncomplete="PF('confirmacaoExclusao').show();"/>
+			</p:column>
+
+		</p:dataTable>
+
+		<p:confirmDialog header="Exclusao Produto"
+			message="Deseja excluir o Produto?" widgetVar="confirmacaoExclusao">
+			<p:button value="Não" onclick="PF('confirmacaoExclusao').hide();" />
+			<p:commandButton value="Sim"
+				oncomplete="PF('confirmacaoExclusao').hide();" />
+		</p:confirmDialog>
+
+
+	</ui:define>
+</ui:composition>

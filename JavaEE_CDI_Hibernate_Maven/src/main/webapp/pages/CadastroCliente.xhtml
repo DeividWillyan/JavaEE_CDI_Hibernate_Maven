@@ -1,0 +1,117 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Novo Cliente</ui:define>
+
+	<ui:define name="corpo">
+		<h1>Novo Cliente</h1>
+
+		<p:toolbar style="margin-top: 20px">
+			<p:toolbarGroup style="margin-top: 3px; margin-bottom:3px">
+				<p:button value="Novo" outcome="/pages/CadastroProduto" />
+				<p:commandButton value="Salvar" id="botaoSalvar"
+					style="margin-left:5px" />
+			</p:toolbarGroup>
+			<p:toolbarGroup align="right"
+				style="margin-top: 3px; margin-bottom:3px">
+				<p:button value="Pesquisa" />
+			</p:toolbarGroup>
+		</p:toolbar>
+
+		<p:panelGrid columns="2" id="painel"
+			style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" size="60" maxlength="80" />
+
+			<p:outputLabel value="Tipo" for="tipo" />
+			<p:selectOneRadio id="tipo" styleClass="sem-bordas">
+				<f:selectItem itemLabel="Física" />
+				<f:selectItem itemLabel="Jurídica" />
+			</p:selectOneRadio>
+
+			<p:outputLabel value="CNPJ/CPF" for="cnpjCPF" />
+			<p:inputText id="cnpjCPF" size="25" maxlength="14" />
+
+			<p:outputLabel value="E-mail" for="email" />
+			<p:inputText id="email" size="45" maxlength="60" />
+		</p:panelGrid>
+
+		<p:commandButton value="Adicionar Endereço"
+			style="margin-top:50px; margin-left:5px"
+			onclick="PF('dialogoEndereco').show();" />
+
+		<p:dataTable style="width:99%; margin-left:5px; margin-top:10px"
+			emptyMessage="Nenhum dado encontrado.">
+
+			<p:column headerText="Logradouro" style="text-align:left">
+			</p:column>
+
+			<p:column headerText="Número" style="text-align:left; width:12%">
+			</p:column>
+
+			<p:column headerText="Complemento" style="text-align:left">
+			</p:column>
+
+			<p:column headerText="CEP" style="text-align:left; width:12%">
+			</p:column>
+
+			<p:column headerText="Cidade/UF" style="text-align:left; width:16%">
+			</p:column>
+
+			<p:column headerText="" style="width:8%">
+				<p:commandButton icon="ui-icon-pencil" />
+				<p:commandButton icon="ui-icon-trash" />
+			</p:column>
+
+		</p:dataTable>
+
+		<p:dialog header="Inclusão de Endereço" widgetVar="dialogoEndereco"
+			closable="true" modal="true" resizable="false">
+			<p:panelGrid columns="2" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Lougradouro" for="logradouro" />
+				<p:inputText id="logradouro" size="40" />
+
+				<p:outputLabel value="Número" for="numero" />
+				<p:inputText id="numero" size="10" />
+
+				<p:outputLabel value="Complemento" for="complemento" />
+				<p:inputText id="complemento" size="25" />
+
+				<p:outputLabel value="CEP" for="cep" />
+				<p:inputText id="cep" size="15" />
+
+				<p:outputLabel value="Cidade" for="cidade" />
+				<h:panelGroup>
+					<p:inputText id="cidade" size="25" style="margin-right:10px" />
+					<p:outputLabel value="UF" for="uf" style="margin-right:5px" />
+					<p:inputText id="uf" size="4" />
+				</h:panelGroup>
+
+				<p:spacer />
+				<p:commandButton value="Incluir" />
+
+			</p:panelGrid>
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
